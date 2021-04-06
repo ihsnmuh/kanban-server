@@ -22,10 +22,10 @@ function errHandler(err, req, res, next) {
       res.status(401).json({ message: "Unauthorized Access" });
       break;
     case "NotFound":
-      res.status(404).json({ message: "Not Found" });
+      res.status(404).json({ message: "Task Not Found" });
       break;
     default:
-      res.status(500).json(err);
+      res.status(500).json({ message: "Internal server error" });
       break;
   }
 }

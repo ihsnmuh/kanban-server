@@ -1,8 +1,7 @@
 "use strict";
-const { hashPassword } = require("../helpers/bcrypt");
 const { Model } = require("sequelize");
 module.exports = (sequelize, DataTypes) => {
-  class User extends Model {
+  class Task extends Model {
     /**
      * Helper method for defining associations.
      * This method is not a part of Sequelize lifecycle.
@@ -10,58 +9,59 @@ module.exports = (sequelize, DataTypes) => {
      */
     static associate(models) {
       // define association here
-      User.hasMany(models.Task);
+      Task.belongsTo(models.User);
     }
   }
-  User.init(
+  Task.init(
     {
-      username: {
+      title: {
         type: DataTypes.STRING,
-        unique: {
-          msg: `Username already exists!`,
-        },
+        allowNull: false,
         validate: {
           notEmpty: {
             args: true,
-            msg: `Username is required!`,
+            msg: "Title is required!",
           },
         },
       },
-      email: {
+      description: {
         type: DataTypes.STRING,
-        unique: {
-          msg: `Email already exists!`,
-        },
+        allowNull: false,
         validate: {
           notEmpty: {
             args: true,
-            msg: `Email is required!`,
+            msg: "Description is required!",
           },
         },
       },
-      password: {
+      category: {
         type: DataTypes.STRING,
+        allowNull: false,
         validate: {
           notEmpty: {
             args: true,
-            msg: `Password is required!`,
+            msg: "Category is required!",
           },
-          len: {
-            args: [6, 100],
-            msg: `Password more than 6 characters`,
+        },
+      },
+      UserId: {
+        type: DataTypes.INTEGER,
+      },
+      priority: {
+        type: DataTypes.STRING,
+        allowNull: false,
+        validate: {
+          notEmpty: {
+            args: true,
+            msg: "Priority is required!",
           },
         },
       },
     },
     {
       sequelize,
-      modelName: "User",
-      hooks: {
-        beforeCreate: (user) => {
-          user.password = hashPassword(user.password);
-        },
-      },
+      modelName: "Task",
     }
   );
-  return User;
+  return Task;
 };
