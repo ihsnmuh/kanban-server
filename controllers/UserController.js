@@ -2,11 +2,14 @@ const { User } = require("../models");
 const { comparePassword } = require("../helpers/bcrypt");
 const { signToken } = require("../helpers/jwt");
 const { OAuth2Client } = require("google-auth-library");
+const checkSpace = require("../helpers/checkspace");
 
 class UserController {
   static register(req, res, next) {
     const { username, email, password } = req.body;
-    if (username.includes(" ")) {
+    // username.includes(" ")
+    let space = checkSpace(username);
+    if (space) {
       res.status(400).json({ message: "Invalid username (must alphanumeric)" });
     } else {
       User.create({ username, email, password })
