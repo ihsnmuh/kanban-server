@@ -12,12 +12,12 @@ Aplikasi ini memiliki konfigurasi antara lain :
 
 ### RESTful endpoints list
 
-- `GET /task`
-- `POST /task`
-- `GET /task/:id`
-- `PUT /task/:id`
-- `PATCH /task/:id`
-- `DELETE /task/:id`
+- `GET /tasks`
+- `POST /tasks`
+- `GET /tasks/:id`
+- `PUT /tasks/:id`
+- `PATCH /tasks/:id`
+- `DELETE /tasks/:id`
 
 - `POST /register`
 - `POST /login`
@@ -27,7 +27,7 @@ Aplikasi ini memiliki konfigurasi antara lain :
 
 ## RESTful endpoint
 
-### GET /task
+### GET /tasks
 
 > Get all Tasks
 
@@ -90,7 +90,7 @@ _Response (500 - Internal server error)_
 
 ---
 
-### POST /task
+### POST /tasks
 
 > Post new Tasks / Create a new task
 
@@ -149,7 +149,7 @@ _Response (500 - Internal server error)_
 
 ---
 
-### GET /task/:id/
+### GET /tasks/:id/
 
 > Get selected Task by TaskId
 
@@ -210,7 +210,7 @@ _Response (500 - Internal server error)_
 
 ---
 
-### PUT /task/:id/
+### PUT /tasks/:id/
 
 > Update selected Task (title, description, category, priority)
 
@@ -280,7 +280,7 @@ _Response (500 - Internal server error)_
 
 ---
 
-### PATCH /task/:id/
+### PATCH /tasks/:id/
 
 > Update selected Task (only category)
 
@@ -347,7 +347,7 @@ _Response (500 - Internal server error)_
 
 ---
 
-### DELETE /task/:id/
+### DELETE /tasks/:id/
 
 > Delete selected Task
 
