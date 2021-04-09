@@ -64,6 +64,7 @@ class UserController {
 
   static googleLogin(req, res, next) {
     const id_token = req.body.id_token;
+    console.log(id_token, ">>>>>>>>>>>>> INI TOKEN ");
     const client = new OAuth2Client(process.env.GOOGLE_CLIENT_ID);
     let email = null;
     let tempUsername = null;
@@ -99,8 +100,8 @@ class UserController {
         }
       })
       .then((DataUser) => {
-        console.log(User, "<<<<<<<<<<<<<<<<<<<<<<<<<<");
-        const token = generateToken({
+        console.log(DataUser, "<<<<<<<<<<<<<<<<<<<<<<<<<<");
+        const token = signToken({
           id: DataUser.id,
           username: DataUser.username,
           email: DataUser.email,
